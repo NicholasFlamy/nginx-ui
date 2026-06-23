@@ -433,7 +433,7 @@ install_openrc_service() {
 }
 
 install_openwrt_service() {
-    local openwrt_download_link="${RPROXY}https://raw.githubusercontent.com/0xJacky/nginx-ui/main/resources/services/nginx-ui.openwrt"
+    local openwrt_download_link="${RPROXY}https://raw.githubusercontent.com/0xJacky/nginx-ui/dev/resources/services/nginx-ui.openwrt"
 
     echo "Downloading Nginx UI OpenWrt init.d file: $openwrt_download_link"
     if ! curl_with_retry -R -H 'Cache-Control: no-cache' -L -o "$OpenWrtPath" "$openwrt_download_link"; then
