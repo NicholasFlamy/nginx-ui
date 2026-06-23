@@ -1,3 +1,15 @@
+# Nicholas Flamy's OpenWrt Fixed Nginx UI
+
+## THIS PROJECT ONLY FOR OpenWrt!
+
+Install latest stable on OpenWrt:
+
+```sh
+bash -c "$(curl -L https://raw.githubusercontent.com/NicholasFlamy/nginx-ui/refs/heads/openwrt-fix/install.sh)" @ install
+```
+
+<br><br><br><br>
+
 <div align="center">
       <img src="resources/logo.png" alt="Nginx UI Logo">
 </div>
