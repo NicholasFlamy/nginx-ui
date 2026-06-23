@@ -252,6 +252,7 @@ identify_the_operating_system_and_architecture() {
         ## Be aware of Linux distribution like Gentoo, which kernel supports switch between Systemd and OpenRC.
         if is_openwrt; then
             SERVICE_TYPE='openwrt'
+            DataPath="/etc/nginx-ui/app.ini"
         elif [[ -f "$(root_path /.dockerenv)" ]] || grep -q 'docker\|lxc' "$(root_path /proc/1/cgroup)" && command_exists systemctl; then
             SERVICE_TYPE='systemd'
         elif [[ -d "$(root_path /run/systemd/system)" ]] || grep -q systemd <(ls -l "$(root_path /sbin/init)" 2>/dev/null); then
@@ -433,7 +434,7 @@ install_openrc_service() {
 }
 
 install_openwrt_service() {
-    local openwrt_download_link="${RPROXY}https://raw.githubusercontent.com/0xJacky/nginx-ui/dev/resources/services/nginx-ui.openwrt"
+    local openwrt_download_link="${RPROXY}https://raw.githubusercontent.com/NicholasFlamy/nginx-ui/openwrt-fix/resources/services/nginx-ui.openwrt"
 
     echo "Downloading Nginx UI OpenWrt init.d file: $openwrt_download_link"
     if ! curl_with_retry -R -H 'Cache-Control: no-cache' -L -o "$OpenWrtPath" "$openwrt_download_link"; then
