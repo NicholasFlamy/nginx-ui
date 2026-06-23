@@ -774,7 +774,7 @@ remove_nginx_ui() {
     if [[ -f "$OpenWrtPath" ]] && "$OpenWrtPath" status >/dev/null 2>&1; then
       stop_nginx_ui
     fi
-    delete_files="/usr/local/bin/nginx-ui $OpenWrtPath"
+    delete_files="/usr/bin/nginx-ui $OpenWrtPath"
     if [[ "$PURGE" -eq '1' ]]; then
         [[ -d "$DataPath" ]] && delete_files="$delete_files $DataPath"
     fi
