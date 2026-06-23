@@ -252,7 +252,7 @@ identify_the_operating_system_and_architecture() {
         ## Be aware of Linux distribution like Gentoo, which kernel supports switch between Systemd and OpenRC.
         if is_openwrt; then
             SERVICE_TYPE='openwrt'
-            DataPath="/etc/nginx-ui/app.ini"
+            DataPath="/etc/nginx-ui"
         elif [[ -f "$(root_path /.dockerenv)" ]] || grep -q 'docker\|lxc' "$(root_path /proc/1/cgroup)" && command_exists systemctl; then
             SERVICE_TYPE='systemd'
         elif [[ -d "$(root_path /run/systemd/system)" ]] || grep -q systemd <(ls -l "$(root_path /sbin/init)" 2>/dev/null); then
