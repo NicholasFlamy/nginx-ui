@@ -450,6 +450,8 @@ install_openwrt_service() {
     "$OpenWrtPath" enable
 
     OPENWRT='1'
+
+    install_openwrt_keep_file
 }
 
 install_initd_service() {
@@ -475,6 +477,22 @@ install_initd_service() {
     fi
 
     INITD='1'
+}
+
+install_openwrt_keep_file() {
+    local openwrt_keep_dir_path="/etc/lib/upgrade/keep.d"
+    local openwrt_download_link="${RPROXY}https://raw.githubusercontent.com/NicholasFlamy/nginx-ui/openwrt-fix/resources/keep.openwrt"
+    
+    echo "Downloading Nginx UI OpenWrt keep file: $openwrt_download_link"
+    if ! curl_with_retry -R -H 'Cache-Control: no-cache' -L -o "$openwrt_keep_dir_path" "$openwrt_download_link"; then
+        echo -e "${FontRed}error: Download OpenWrt keep file failed! Please check your network or try again.${FontSuffix}"
+        return 1
+    fi
+
+    chmod 755 "$openwrt_keep_dir_path"
+    echo "info: OpenWrt keep file has been installed successfully!"
+    echo -e "${FontGreen}note: The OpenWrt keep file is installed to '$openwrt_keep_dir_path'.${FontSuffix}"
+    cat_file_with_name "$openwrt_keep_dir_path"
 }
 
 install_config() {
